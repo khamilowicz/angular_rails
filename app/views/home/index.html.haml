@@ -1,7 +1,24 @@
 .app{ 'ng-app' => 'myApp'}
-  %input{ type: 'text', ng: {model: 'yourName'}}
-  Hello {{ yourName }}
   .contr{ ng: {controller: 'GreetingCtrl', model: 'some_text'}}
+    %form
+      %input{ type: 'text', ng: {model: 'newtask.title'}, placeholder: "Title"}
+      %input{ type: 'text', ng: {model: 'newtask.description'}, placeholder: "Description"}
+      %button{ ng: {click: 'saveTask(newtask)'}}
+        Save
+    Search: 
+    %input{ type: 'text', ng: {model: 'query'}}
+    Hello {{ yourName }}
+    .new_api
+      New tasks api:
+      Title: {{ task.title }}
+      Description: {{ task.description }}
+      <br/>
+      Repeat
+      .tasks{ ng: {repeat: 'task in tasks | filter:query '}}
+        Title: {{ task.title }}
+        Description: {{ task.description }}
+        <br/>
+    %hr
     =link_to "Action", '', { 'ng-click' => "respondA()"}
     .da{ng: {repeat: 'point in show_data'}}
       {{ point }}

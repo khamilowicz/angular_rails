@@ -1,3 +1,4 @@
+require "pry"
 class Api::TasksController < Api::BaseController
 
   respond_to :json
@@ -11,7 +12,7 @@ class Api::TasksController < Api::BaseController
   end
 
   def create 
-    respond_with :api, Task.create(params[:task])
+    respond_with :api, Task.create(task_params)
   end
 
   def update 
@@ -20,5 +21,9 @@ class Api::TasksController < Api::BaseController
 
   def destroy 
     respond_with :api, Task.destroy(params[:id])
+  end
+
+  def task_params
+    params.require(:task).permit(:title, :description)
   end
 end
